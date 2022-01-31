@@ -1,0 +1,51 @@
+=== FUNCTIONALITY ===
+
+- keep track of peoples birthdays
+- send e cards via email or text
+- recommended gift items based on person's preferences
+- reminders when time gets close
+- add people so you can easily keep track of their birthdays
+
+=== BACKEND ===
+
+- jwt
+  [] issuing and revoking tokens
+  [] blacklisting tokens
+  [] token authentication
+  [] refreshing tokens
+
+- twilio
+  [] email/SMS e cards and greetings
+  [] email/SMS reminders
+  [] email/SMS gift recommendations
+
+- S3
+  [] object storage (collages and other images)
+  [] documents
+
+- postgres
+  [] local setup
+  [] schema
+  [] migrations
+
+- redis
+  [] content cache
+  [] token blacklist
+
+- express
+  [] user routes
+  [] auth routes
+  [] misc routes
+
+=== FRONTEND ===
+
+- theme
+  [] logo
+  [] graphics
+  [] colors
+  [] animations
+
+- pages
+  [] auth (login, register, logout)
+  [] dashboard
+  [] profile/settings

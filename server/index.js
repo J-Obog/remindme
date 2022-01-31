@@ -4,5 +4,5 @@ const app = express();
 const port = 8080;
 
 app.listen(port, () => {
-  logger.info("Hello world");
+  logger.info(`Server running on port ${port}`);
 });
