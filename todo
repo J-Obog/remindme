@@ -6,6 +6,10 @@
 - reminders when time gets close
 - add people so you can easily keep track of their birthdays
 
+=== RESEARCH ===
+
+[] amazon api?
+
 === BACKEND ===
 
 - jwt
@@ -24,7 +28,7 @@
   [] documents
 
 - postgres
-  [] local setup
+  [x] local setup
   [] schema
   [] migrations
 
