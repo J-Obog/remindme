@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env NODE_ENV=development nodemon index.js",
-    "start": "node index.js"
+    "dev": "cross-env NODE_ENV=development nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +29,7 @@
     "winston": "^3.5.0"
   },
   "devDependencies": {
+    "commander": "^9.0.0",
     "cross-env": "^7.0.3",
     "nodemon": "^2.0.15",
     "sequelize-cli": "^6.4.1"

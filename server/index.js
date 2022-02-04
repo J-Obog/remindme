@@ -1,7 +1,7 @@
 const dotenv = require("dotenv");
 
 if (process.env.NODE_ENV === "development") {
-  dotenv.config({ path: ".env.dev" });
+  dotenv.config({ path: "/env/.env.dev" });
 }
 
 const express = require("express");
