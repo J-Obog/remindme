@@ -1,12 +1,10 @@
 const dotenv = require("dotenv");
-
-if (process.env.NODE_ENV === "development") {
-  dotenv.config({ path: "/env/.env.dev" });
-}
-
+const env = process.env.NODE_ENV || "development";
 const express = require("express");
 const logger = require("#utils/logger");
 const app = express();
+
+dotenv.config({ path: `./environment/${env}.env` });
 const port = process.env.PORT || 8089;
 
 app.listen(port, () => {
