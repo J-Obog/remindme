@@ -1,10 +1,6 @@
 const { createLogger, format, transports } = require("winston");
 const { combine, timestamp, printf } = format;
 
-const timeZoneDate = () => {
-  return new Date().toUTCString();
-};
-
 const loggerFormat = printf(({ level, message, timestamp }) => {
   return `${timestamp} ${level}: ${message}`;
 });
@@ -12,7 +8,11 @@ const loggerFormat = printf(({ level, message, timestamp }) => {
 const logger = createLogger({
   format: combine(
     format.colorize(),
-    timestamp({ format: timeZoneDate }),
+    timestamp({
+      format: () => {
+        return new Date().toUTCString();
+      },
+    }),
     loggerFormat
   ),
   transports: [new transports.Console()],

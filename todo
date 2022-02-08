@@ -29,7 +29,7 @@
 
 - postgres
   [x] local setup
-  [] schema
+  [x] schema
   [x] migrations
 
 - redis
