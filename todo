@@ -30,7 +30,7 @@
 - postgres
   [x] local setup
   [] schema
-  [] migrations
+  [x] migrations
 
 - redis
   [] content cache
