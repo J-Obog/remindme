@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 
-const db = new Sequelize(
+module.exports = new Sequelize(
   process.env.POSTGRES_DB,
   process.env.POSTGRES_USER,
   process.env.POSTGRES_PASSWORD,
@@ -10,5 +10,3 @@ const db = new Sequelize(
     port: process.env.POSTGRES_PORT,
   }
 );
-
-module.exports = db;
