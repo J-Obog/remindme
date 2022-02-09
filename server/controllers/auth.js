@@ -1,5 +1,6 @@
 const User = require("#models/user");
 const { userRegSchema, formatJoiErrors } = require("#utils/validation");
+const cache = require("../config/cache");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -75,5 +76,13 @@ exports.registerNewUser = async (req, res) => {
 };
 
 exports.logUserOut = async (req, res) => {
-  return res.sendStatus(200);
+  const { jti } = req;
+  const rawToken = req.headers[process.env.JWT_HEADER_NAME];
+
+  try {
+    await cache.set(`jwtoken-${rawToken}`, 3800, jti);
+    return res.status(200).json({ message: "Successfully logged out" });
+  } catch (e) {
+    return res.status(500).json(e);
+  }
 };
