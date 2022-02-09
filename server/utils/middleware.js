@@ -24,6 +24,12 @@ module.exports.authenticateUser = async (req, res, next) => {
       rawToken,
       process.env.JWT_SECRET_KEY
     );
+
+    if (verifiedToken.type !== "access")
+      return res.status(401).json({
+        message: "Invalid authorization token",
+      });
+
     req.jti = verifiedToken.jti;
     next();
   } catch (e) {

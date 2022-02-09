@@ -21,15 +21,15 @@ exports.logUserIn = async (req, res) => {
           .status(401)
           .json({ message: "Invalid email and password combination" });
       } else {
-        const access = await jwt.sign(
-          { jti: existingUser.id },
+        const accessToken = await jwt.sign(
+          { jti: existingUser.id, type: "access" },
           process.env.JWT_SECRET_KEY,
           {
             expiresIn: "1h",
           }
         );
-        const refresh = await jwt.sign(
-          { jti: existingUser.id },
+        const refreshToken = await jwt.sign(
+          { jti: existingUser.id, type: "refresh" },
           process.env.JWT_SECRET_KEY,
           {
             expiresIn: "30d",
@@ -37,7 +37,7 @@ exports.logUserIn = async (req, res) => {
         );
         return res
           .status(200)
-          .json({ access_token: access, refresh_token: refresh });
+          .json({ accessToken: accessToken, refreshToken: refreshToken });
       }
     }
   } catch (e) {
