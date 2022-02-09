@@ -42,5 +42,10 @@ exports.userRegSchema = Joi.object()
         "date.min": "Must be born on or after {{#limit}}",
         "date.max": "Must be born on or before {{#limit}}",
       }),
+
+    phone: Joi.string().length(10).messages({
+      "string.empty": "Phone number cannot be empty",
+      "string.length": "Phone number must be 10 digits",
+    }),
   })
   .unknown(true);

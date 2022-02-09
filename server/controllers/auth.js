@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 exports.logUserIn = async (req, res) => {};
 
 exports.registerNewUser = async (req, res) => {
-  const { firstName, lastName, email, password, birthDate } = req.body;
+  const { firstName, lastName, email, password, birthDate, phone } = req.body;
   const { error } = userRegSchema.validate(req.body, { abortEarly: false });
 
   if (error) return res.status(401).json({ message: formatJoiErrors(error) });
@@ -25,6 +25,7 @@ exports.registerNewUser = async (req, res) => {
       email: email,
       password: phash,
       birthDate: birthDate,
+      phone: phone,
     });
 
     return res.status(200).json({ message: "Account successfully created" });
