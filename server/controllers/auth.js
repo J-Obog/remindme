@@ -7,12 +7,12 @@ exports.logUserIn = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ where: { email: email } });
+    const existingUser = await User.findOne({ where: { email: email } });
 
-    if (!user) {
+    if (!existingUser) {
       return res
         .status(401)
-        .json({ message: "Could not find accout with matching email" });
+        .json({ message: "Invalid email and password combination" });
     } else {
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
@@ -20,12 +20,20 @@ exports.logUserIn = async (req, res) => {
           .status(401)
           .json({ message: "Invalid email and password combination" });
       } else {
-        const access = await jwt.sign({ jti: user.id }, "secretkey", {
-          expiresIn: "1h",
-        });
-        const refresh = await jwt.sign({ jti: user.id }, "secretkey", {
-          expiresIn: "30d",
-        });
+        const access = await jwt.sign(
+          { id: user.id },
+          process.env.JWT_SECRET_KEY,
+          {
+            expiresIn: "1h",
+          }
+        );
+        const refresh = await jwt.sign(
+          { id: user.id },
+          process.env.JWT_SECRET_KEY,
+          {
+            expiresIn: "30d",
+          }
+        );
         return res
           .status(200)
           .json({ access_token: access, refresh_token: refresh });
@@ -43,8 +51,8 @@ exports.registerNewUser = async (req, res) => {
   if (error) return res.status(401).json({ message: formatJoiErrors(error) });
 
   try {
-    const user = await User.findOne({ where: { email: email } });
-    if (user)
+    const existingUser = await User.findOne({ where: { email: email } });
+    if (existingUser)
       return res
         .status(401)
         .json({ message: { email: "Account with email already exists" } });
