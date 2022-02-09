@@ -13,9 +13,8 @@
 === BACKEND ===
 
 - jwt
-  [] issuing and revoking tokens
-  [] blacklisting tokens
-  [] token authentication
+  [x] issuing and revoking tokens
+  [x] token authentication
   [] refreshing tokens
 
 - twilio
