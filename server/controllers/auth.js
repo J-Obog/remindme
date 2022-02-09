@@ -14,21 +14,21 @@ exports.logUserIn = async (req, res) => {
         .status(401)
         .json({ message: "Invalid email and password combination" });
     } else {
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = await bcrypt.compare(password, existingUser.password);
       if (!isMatch) {
         return res
           .status(401)
           .json({ message: "Invalid email and password combination" });
       } else {
         const access = await jwt.sign(
-          { id: user.id },
+          { jti: existingUser.id },
           process.env.JWT_SECRET_KEY,
           {
             expiresIn: "1h",
           }
         );
         const refresh = await jwt.sign(
-          { id: user.id },
+          { jti: existingUser.id },
           process.env.JWT_SECRET_KEY,
           {
             expiresIn: "30d",
@@ -74,4 +74,6 @@ exports.registerNewUser = async (req, res) => {
   }
 };
 
-exports.logUserOut = async (req, res) => {};
+exports.logUserOut = async (req, res) => {
+  return res.sendStatus(200);
+};
