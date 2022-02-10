@@ -33,7 +33,7 @@
 
 - redis
   [] content cache
-  [] token blacklist
+  [x] token blacklist
 
 - express
   [] user routes
