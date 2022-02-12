@@ -9,7 +9,7 @@ const Login = () => {
                 - Logo
                 - Spiel
             */}
-                <h1 className="text-3xl">Log In</h1>
+                <h1 className="font-bold text-2xl text-gray-600">Log In</h1>
             </div>
             <div className="flex flex-col items-center gap-10 w-full">
                 <div className="w-full">
