@@ -1,3 +1,5 @@
-import { Login, Logout, Register } from "./Auth";
+import Login from './Login';
+import Logout from './Logout';
+import Register from './Register';
 
 export { Login, Logout, Register };

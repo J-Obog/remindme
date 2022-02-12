@@ -11,6 +11,9 @@ module.exports = {
             keyframes: {
                 'bg-fade-in': { from: { opacity: 0 }, to: { opacity: 1 } },
             },
+            backgroundImage: {
+                'auth-page-bg': "url('/src/assets/img/auth-page-bg.svg')",
+            },
         },
     },
     plugins: [],
