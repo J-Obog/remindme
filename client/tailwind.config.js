@@ -3,7 +3,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                kayak: ['"Kayak Sans"', 'sans-serif'],
+                nunito: ['"Nunito"', 'sans-serif'],
             },
             animation: {
                 'bg-fade-in': 'bg-fade-in 1s ease-out',
