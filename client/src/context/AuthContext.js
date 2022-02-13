@@ -1,6 +1,6 @@
 import { React, createContext } from 'react';
 
-const AuthContext = createContext(null);
+export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
     const login = () => {};
@@ -10,4 +10,4 @@ const AuthProvider = ({ children }) => {
     return <AuthContext.Provider value={{ login, logout, register }}>{children}</AuthContext.Provider>;
 };
 
-export { AuthProvider, AuthContext };
+export default AuthProvider;
