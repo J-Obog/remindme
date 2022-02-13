@@ -11,7 +11,23 @@
         @apply bg-cover bg-no-repeat bg-auth-page-bg;
     }
 
-    .auth-form-modal {
-        @apply bg-white px-16 py-8 shadow-xl rounded-xl flex flex-col items-center justify-start;
+    .auth-form-input {
+        @apply text-xl text-gray-800 border-b-2 border-gray-200 outline-none w-full;
+    }
+
+    .auth-form-htext {
+        @apply font-bold text-2xl text-gray-600;
+    }
+
+    .auth-form-link {
+        @apply text-blue-700 no-underline hover:underline;
+    }
+
+    .auth-form-btn {
+        @apply font-bold text-white text-xl bg-green-400 rounded-xl py-3 w-full;
+    }
+
+    .auth-form-container {
+        @apply bg-white w-1/4 shadow-xl px-8 py-8 rounded-xl flex flex-col gap-16 items-center justify-start;
     }
 }
