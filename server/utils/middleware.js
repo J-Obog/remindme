@@ -24,7 +24,7 @@ module.exports.verifyAuthToken = (tokenType) => {
                     message: 'Invalid authorization token',
                 });
 
-            req[`${tokenType}Token`] = verifiedToken;
+            req[`${tokenType}Jwt`] = verifiedToken;
             next();
         } catch (e) {
             return res.status(401).json({ message: e.message });

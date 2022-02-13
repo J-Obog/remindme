@@ -52,11 +52,13 @@ exports.registerNewUser = async (req, res) => {
 };
 
 exports.logUserOut = async (req, res) => {
-    const { jti } = req;
-    const rawToken = req.headers[process.env.JWT_HEADER_NAME];
+    const { accessJwt, refreshJwt } = req;
+    const rawAccessToken = req.headers[process.env.JWT_ACCESS_HEADER];
+    const rawRefreshToken = req.headers[process.env.JWT_REFRESH_HEADER];
 
     try {
-        await cache.set(`jwtoken-${rawToken}`, 3800, jti);
+        await cache.set(`jwtoken-${rawAccessToken}`, parseInt(process.env.JWT_ACCESS_EXPIRY) + 60, accessJwt.jti);
+        await cache.set(`jwtoken-${rawRefreshToken}`, parseInt(process.env.JWT_REFRESH_EXPIRY) + 60, refreshJwt.jti);
         return res.status(200).json({ message: 'Successfully logged out' });
     } catch (e) {
         return res.status(500).json(e);
