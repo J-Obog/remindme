@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { PublicRoute } from './components';
-import { Login, Logout, Register } from './pages';
-import { AuthPageLayout } from './layouts';
+import { PublicRoute } from '~components';
+import { Login, Logout, Register } from '~pages';
+import { AuthPageLayout } from '~layouts';
 
 const App = () => {
     return (
