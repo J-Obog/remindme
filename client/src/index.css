@@ -28,6 +28,6 @@
     }
 
     .auth-form-container {
-        @apply bg-white w-2/6 shadow-xl px-8 py-8 rounded-xl flex flex-col gap-16 items-center justify-start;
+        @apply bg-white w-1/4 shadow-xl px-8 py-8 rounded-xl flex flex-col gap-16 items-center justify-start;
     }
 }

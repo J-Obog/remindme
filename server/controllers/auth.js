@@ -8,7 +8,7 @@ exports.logUserIn = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const existingUser = await User.findOne({ where: { email: email } });
+        const existingUser = await User.findOne({ where: { email } });
 
         if (!existingUser) {
             return res.status(401).json({ message: 'Invalid email and password combination' });
@@ -38,7 +38,7 @@ exports.registerNewUser = async (req, res) => {
     if (error) return res.status(401).json({ message: formatJoiErrors(error) });
 
     try {
-        const existingUser = await User.findOne({ where: { email: email } });
+        const existingUser = await User.findOne({ where: { email } });
         if (existingUser) return res.status(401).json({ message: { email: 'Account with email already exists' } });
 
         const phash = await bcrypt.hash(password, 10);
@@ -60,6 +60,20 @@ exports.logUserOut = async (req, res) => {
         await cache.set(`jwtoken-${rawAccessToken}`, parseInt(process.env.JWT_ACCESS_EXPIRY) + 60, accessJwt.jti);
         await cache.set(`jwtoken-${rawRefreshToken}`, parseInt(process.env.JWT_REFRESH_EXPIRY) + 60, refreshJwt.jti);
         return res.status(200).json({ message: 'Successfully logged out' });
+    } catch (e) {
+        return res.status(500).json(e);
+    }
+};
+
+exports.refreshTokens = async (req, res) => {
+    try {
+        const accessToken = await jwt.sign({ jti: existingUser.id, type: 'access' }, process.env.JWT_ACCESS_KEY, {
+            expiresIn: process.env.JWT_ACCESS_EXPIRY,
+        });
+        const refreshToken = await jwt.sign({ jti: existingUser.id, type: 'refresh' }, process.env.JWT_REFRESH_KEY, {
+            expiresIn: process.env.JWT_REFRESH_EXPIRY,
+        });
+        return res.status(200).json({ accessToken, refreshToken });
     } catch (e) {
         return res.status(500).json(e);
     }
