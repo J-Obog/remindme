@@ -65,15 +65,12 @@ exports.logUserOut = async (req, res) => {
     }
 };
 
-exports.refreshTokens = async (req, res) => {
+exports.refreshToken = async (req, res) => {
     try {
         const accessToken = await jwt.sign({ jti: existingUser.id, type: 'access' }, process.env.JWT_ACCESS_KEY, {
             expiresIn: process.env.JWT_ACCESS_EXPIRY,
         });
-        const refreshToken = await jwt.sign({ jti: existingUser.id, type: 'refresh' }, process.env.JWT_REFRESH_KEY, {
-            expiresIn: process.env.JWT_REFRESH_EXPIRY,
-        });
-        return res.status(200).json({ accessToken, refreshToken });
+        return res.status(200).json({ accessToken });
     } catch (e) {
         return res.status(500).json(e);
     }
